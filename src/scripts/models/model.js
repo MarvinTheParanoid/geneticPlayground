@@ -1,0 +1,6 @@
+// creation_function,
+// fitness_function,
+// crossover_function,
+// mutation_function,
+// stop_value,
+// target_value,

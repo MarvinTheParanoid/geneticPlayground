@@ -1,4 +1,4 @@
-import * as genetic from "./genetic.js";
+import * as genetic from "./genetic_functions";
 import { mockRandom, resetMockRandom } from "jest-mock-random";
 
 describe("randomPopulation", () => {
