@@ -20,8 +20,8 @@ describe("randomPopulation", () => {
 
 describe("evaluateFitness", () => {
   test("returns an array of individuals with fitness values", () => {
-    const population = [1, 2, 3, 4, 5];
-    const fitness_function = (individual) => individual;
+    const population = [{ value: 1 }, { value: 2 }, { value: 3 }];
+    const fitness_function = (individual) => individual.value;
     const evaluated_population = genetic.evaluateFitness(
       population,
       fitness_function
@@ -30,21 +30,19 @@ describe("evaluateFitness", () => {
       { value: 1, fitness: 1 },
       { value: 2, fitness: 2 },
       { value: 3, fitness: 3 },
-      { value: 4, fitness: 4 },
-      { value: 5, fitness: 5 },
     ]);
   });
   test("calls the fitness function on each individual", () => {
-    const population = [1, 2, 3, 4, 5];
+    const population = [{ value: 1 }, { value: 2 }, { value: 3 }];
     const fitness_function = jest.fn();
     genetic.evaluateFitness(population, fitness_function);
-    expect(fitness_function).toHaveBeenCalledTimes(5);
-    expect(fitness_function).toHaveBeenCalledWith(1, undefined);
-    expect(fitness_function).toHaveBeenCalledWith(4, undefined);
+    expect(fitness_function).toHaveBeenCalledTimes(3);
+    expect(fitness_function).toHaveBeenCalledWith({ value: 1 }, undefined);
+    expect(fitness_function).toHaveBeenCalledWith({ value: 3 }, undefined);
   });
   test("uses the target value if provided", () => {
-    const population = [1, 2, 3, 4, 5];
-    const fitness_function = (value, target) => value + target;
+    const population = [{ value: 1 }, { value: 2 }, { value: 3 }];
+    const fitness_function = (individual, target) => individual.value + target;
     const evaluated_population = genetic.evaluateFitness(
       population,
       fitness_function,
@@ -54,8 +52,6 @@ describe("evaluateFitness", () => {
       { value: 1, fitness: 11 },
       { value: 2, fitness: 12 },
       { value: 3, fitness: 13 },
-      { value: 4, fitness: 14 },
-      { value: 5, fitness: 15 },
     ]);
   });
 });
@@ -236,9 +232,11 @@ describe("crossover", () => {
       { value: 4, fitness: 4 }, // 1
     ];
     mockRandom([0, 0.2, 0.5, 0.95]);
-    const crossover_function = (parent_1, parent_2) => parent_1 + parent_2;
+    const crossover_function = (parent_1, parent_2) => ({
+      value: parent_1.value + parent_2.value,
+    });
     const children = genetic.crossover(population, 2, crossover_function);
-    expect(children).toEqual([3, 7]);
+    expect(children).toEqual([{ value: 3 }, { value: 7 }]);
     resetMockRandom();
   });
 });

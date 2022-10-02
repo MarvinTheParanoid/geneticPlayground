@@ -73,9 +73,9 @@ export function randomPopulation(n, creation_function) {
 
 // return the fitness of individuals in a population
 export function evaluateFitness(population, fitness_function, target_value) {
-  return population.map((value) => ({
-    value,
-    fitness: fitness_function(value, target_value),
+  return population.map((individual) => ({
+    ...individual,
+    fitness: fitness_function(individual, target_value),
   }));
 }
 
@@ -89,7 +89,7 @@ export function crossover(population, n, crossover_function) {
   for (let i = 0; i < n; i++) {
     // it might be interesting to implement monogamy, polygamy, multiple children, etc.
     const [parent1, parent2] = weightedSampleWithoutReplacement(population, 2);
-    new_population.push(crossover_function(parent1.value, parent2.value));
+    new_population.push(crossover_function(parent1, parent2));
   }
   return new_population;
 }
