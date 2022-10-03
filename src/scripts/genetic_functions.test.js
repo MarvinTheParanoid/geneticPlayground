@@ -1,23 +1,6 @@
 import * as genetic_fn from "./genetic_functions";
 import { mockRandom, resetMockRandom } from "jest-mock-random";
 
-describe("randomPopulation", () => {
-  test("returns an array of length n", () => {
-    const population = genetic_fn.randomPopulation(100, () => 1);
-    expect(population).toBeInstanceOf(Array);
-    expect(population.length).toBe(100);
-  });
-  test("calls the creation function n times", () => {
-    const creation_function = jest.fn();
-    genetic_fn.randomPopulation(100, creation_function);
-    expect(creation_function).toHaveBeenCalledTimes(100);
-  });
-  test("returns an array of the values returned by the creation function", () => {
-    const population = genetic_fn.randomPopulation(100, () => 1);
-    expect(population.every((individual) => individual === 1)).toBe(true);
-  });
-});
-
 describe("evaluateFitness", () => {
   test("returns an array of individuals with fitness values", () => {
     const population = [{ value: 1 }, { value: 2 }, { value: 3 }];

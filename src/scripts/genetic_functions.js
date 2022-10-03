@@ -6,16 +6,6 @@
  */
 
 /**
- * Creates an initial population of n random individuals
- * @param {number} n - number of individuals in initial population
- * @param {function} creation_function - function to create an individual
- * @returns {array<Object>} - array of individuals
- */
-export function randomPopulation(n, creation_function) {
-  return Array.from({ length: n }, () => creation_function());
-}
-
-/**
  *  Add a fitness property to each individual in the population
  * @param {Array<Object>} population - array of individuals
  * @param {function} fitness_function - function to calculate fitness of an individual
