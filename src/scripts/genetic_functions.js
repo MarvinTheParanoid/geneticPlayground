@@ -23,7 +23,7 @@ export function evaluateFitness(population, fitness_function, target_value) {
  * Return a new population by crossing over individuals picked by random weighted sampling by fitness
  * @param {Array<Object>} population - array of individuals
  * @param {number} n - number of individuals in new population
- * @param {function} crossover_function - a function to create a new individual from two parents
+ * @param {function} crossover_function - a function to create new individual(s) from two parents
  * @param {bool} ascending - whether to maximize or minimize the fitness function
  * @returns {Array<Object>} - the next generation of individuals
  */
@@ -40,7 +40,7 @@ export function crossover(population, n, crossover_function, ascending) {
       2,
       ascending
     );
-    new_population.push(crossover_function(parent1, parent2));
+    new_population.push(...crossover_function(parent1, parent2));
   }
   return new_population;
 }

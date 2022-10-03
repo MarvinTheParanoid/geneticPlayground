@@ -291,7 +291,7 @@ describe("crossover", () => {
       { value: 4, fitness: 4 },
       { value: 5, fitness: 5 },
     ];
-    const crossover_function = () => 1;
+    const crossover_function = () => [1];
     const children = genetic_fn.crossover(
       population,
       10,
@@ -309,9 +309,11 @@ describe("crossover", () => {
       { value: 4, fitness: 4 }, // 1
     ];
     mockRandom([0, 0.2, 0.5, 0.95]);
-    const crossover_function = (parent_1, parent_2) => ({
-      value: parent_1.value + parent_2.value,
-    });
+    const crossover_function = (parent_1, parent_2) => [
+      {
+        value: parent_1.value + parent_2.value,
+      },
+    ];
     const children = genetic_fn.crossover(
       population,
       2,

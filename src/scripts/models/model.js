@@ -25,7 +25,7 @@ export default class BaseClass {
    * @param {number} population_size - the number of individuals in the population
    * @returns {Array<Object>} - the initial population
    */
-  creation_function(n) {
+  creation_function(population_size) {
     throw new Error("Method 'creation_function()' must be implemented.");
   }
 
@@ -41,14 +41,14 @@ export default class BaseClass {
   }
 
   /**
-   * Returns a new individual created by crossing over two parents.
-   * Crossing over is the process of combining two parents to create a new individual
+   * Returns new individual(s) created by crossing over two parents.
+   * Crossing over is the process of combining two parents to create new children
    * and is the way information is passed from one generation to the next.
    * Crossover is usually done by selecting a random point in the parents and combining
    * the parents up to that point.
    * @param {Object} parent1 - an individual in the population
    * @param {Object} parent2 - an individual in the population
-   * @returns {Object} - a new individual created by crossing over two parents
+   * @returns {Array<Object>} - new individual(s) created by crossing over two parents
    */
   crossover_function(parent1, parent2) {
     throw new Error("Method 'crossover_function()' must be implemented.");

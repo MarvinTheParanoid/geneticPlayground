@@ -24,7 +24,7 @@ import {
  * @param {function} model.stop_function - a function that stops the genetic algorithm when it returns true
  * @param {function} model.creation_function - function to create new individuals
  * @param {function} model.fitness_function - function to calculate fitness of an individual
- * @param {function} model.crossover_function - function to create a new individual from two parents
+ * @param {function} model.crossover_function - function to create new individual(s) from two parents
  * @param {function} model.mutation_function - function to mutate an individual
  * @param {function} logging_function - (optional) function to log the state of the algorithm at each generation
  * @param {Object} configuration - (optional) configuration options for the algorithm
@@ -37,24 +37,16 @@ import {
  */
 export default function geneticAlgorithm(
   model,
-  logging_function = () => {},
-  configuration = {
-    population_size: 100,
-    generations: 100,
-    mutation_rate: 0.01,
-    survival_rate: 0.2,
-    reproduction_rate: 1.5,
-    ascending: true,
-  }
+  {
+    logging_function = () => {},
+    population_size = 100,
+    generations = 100,
+    mutation_rate = 0.01,
+    survival_rate = 0.2,
+    reproduction_rate = 1.5,
+    ascending = true,
+  } = {}
 ) {
-  const {
-    population_size,
-    generations,
-    mutation_rate,
-    survival_rate,
-    reproduction_rate,
-    ascending,
-  } = configuration;
   const {
     creation_function,
     fitness_function,
@@ -97,4 +89,9 @@ export default function geneticAlgorithm(
     // set the population to the next generation
     population = next_generation;
   }
+  // return the history of the population
+  return {
+    history,
+    fittest: fittestIndividual(population, ascending),
+  };
 }
