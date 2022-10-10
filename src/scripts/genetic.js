@@ -3,6 +3,8 @@
 // 2. do I want to add a score modifier to the fitness function?
 // 3. do I want to add a reproduction rate for getting the next generation?
 // 5. should initial populations be an object with a value?
+// 6. Would be interesting to track the variation in the population over time
+// 7. Stop function should take the population as an argument (may want to stop when the population is stable)
 
 import {
   evaluateFitness,

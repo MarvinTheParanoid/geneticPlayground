@@ -6,7 +6,7 @@
  * by the subclass.
  * @class Model
  */
-export default class BaseClass {
+export default class BaseModel {
   /**
    * A function that stops the genetic algorithm when it returns true.
    * Useful for stopping the algorithm when a target value is reached.
@@ -56,7 +56,7 @@ export default class BaseClass {
 
   /**
    * Returns a mutated an individual.
-   * Mutations are usually small changes to the individual to add variety to the population
+   * Mutations are usually small changes to the individual to add variance to the population
    * and prevents the algorithm from getting stuck in a local optimum.
    * @param {Object} individual - an individual in the population
    * @param {number} mutation_rate - the probability of mutation

@@ -141,8 +141,10 @@ export function relativeCumulativeFitness(population, ascending) {
 export function randomUniqueIndices(weights, n) {
   // raise an error if n is less than zero or greater than the population size
   // population size is the length of the weights array minus 1
-  if (n < 0 || n > weights.length) {
-    throw new Error("n must be between 0 and the population size");
+  if (n <= 0 || n > weights.length) {
+    throw new Error(
+      "n must be greater than 0 and less than or equal to the population size"
+    );
   }
   // get n unique indices
   const indices = [];
